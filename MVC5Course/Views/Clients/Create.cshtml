@@ -2,16 +2,17 @@
 
 @{
     ViewBag.Title = "Create";
-    //Layout = ""; /*15-2 Create 頁面的內容整合到 / Clients / Index 頁面最下方*/
+    Layout = ""; /*15-2 Create 頁面的內容整合到 / Clients / Index 頁面最下方*/
 }
 
 <h2>Create</h2>
 
 @*建立form方式*@
-@using (Html.BeginForm()) 
-{
+@*@using (Html.BeginForm())*@
+@using (Html.BeginForm("Create","Clients" ))
+    {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Client</h4>
         <hr />
