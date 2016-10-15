@@ -15,11 +15,20 @@ namespace MVC5Course.Controllers
         private FabricsEntities db = new FabricsEntities();
 
         // GET: Clients
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
             var client = db.Client.Include(c => c.Occupation);
-            client = client.OrderByDescending(c => c.Occupation).Take(10);
+
+            // 14-2修改 /Clients/Index 頁面，加上 FirstName 的搜尋功能
+            if (!string.IsNullOrEmpty(search))
+            {
+                client = client.Where( p=>p.FirstName.Contains(search) );
+            }
+
+            //取得前10筆
+            client = client.OrderByDescending(p => p.ClientId).Take(10);
             return View(client);
+
         }
 
         // GET: Clients/Details/5
@@ -42,6 +51,13 @@ namespace MVC5Course.Controllers
         {
             ViewBag.OccupationId = new SelectList(db.Occupation, "OccupationId", "OccupationName");
             return View();
+
+            
+            var client = new Client()
+            {
+                Gender = "M"
+            };
+            return View(client);
         }
 
         // POST: Clients/Create

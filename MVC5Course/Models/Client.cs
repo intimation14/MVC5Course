@@ -37,11 +37,15 @@ namespace MVC5Course.Models
         public string LastName { get; set; }
         [Required]
         [RegularExpression ("[MF]",ErrorMessage = "{0} 欄位只能輸M或F")]
+        [DisplayName("性別")]
         public string Gender { get; set; }
         [Required]
         [DisplayName("生日")]
         [DisplayFormat(DataFormatString ="{0:yyyy/mm//dd}",ApplyFormatInEditMode =true)]
         public Nullable<System.DateTime> DateOfBirth { get; set; }
+        [DisplayName("信用評等")]
+        [Range(0,9,ErrorMessage ="{0}只能輸入0-9")]
+        //語系：ErrorMessageResourceType = 
         public Nullable<double> CreditRating { get; set; }
         public string XCode { get; set; }
         public Nullable<int> OccupationId { get; set; }
