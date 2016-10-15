@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
+using MVC5Course.Models.ViewModels;
 
 namespace MVC5Course.Controllers
 {
@@ -145,5 +146,18 @@ namespace MVC5Course.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(ClientLoginViewModel client)
+        {
+            return View("LoginResult", client);
+        }
     }
+
 }

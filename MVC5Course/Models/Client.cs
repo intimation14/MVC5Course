@@ -25,7 +25,7 @@ namespace MVC5Course.Models
         public int ClientId { get; set; }
         [Required ]
         [StringLength(10,ErrorMessage = "{0} 最大不得超過10個字元")] //商業邏輯驗證
-        [DisplayName("姓")]  //自定義顯示名稱
+        [DisplayName("名")]  //自定義顯示名稱
         public string FirstName { get; set; }
         [Required]
         [StringLength(10, ErrorMessage = "{0} 最大不得超過{1}個字元")]
@@ -40,8 +40,8 @@ namespace MVC5Course.Models
         [DisplayName("性別")]
         public string Gender { get; set; }
         [Required]
-        [DisplayName("生日")]
-        [DisplayFormat(DataFormatString ="{0:yyyy/mm//dd}",ApplyFormatInEditMode =true)]
+        [DisplayName("生日")] 
+        [DisplayFormat(DataFormatString ="{0:yyyy/mm/dd}",ApplyFormatInEditMode =true)]    //DateOfBirth 在編輯的時候也套用日期格式
         public Nullable<System.DateTime> DateOfBirth { get; set; }
         [DisplayName("信用評等")]
         [Range(0,9,ErrorMessage ="{0}只能輸入0-9")]
