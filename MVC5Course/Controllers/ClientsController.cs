@@ -63,11 +63,11 @@ namespace MVC5Course.Controllers
             return View();
 
             
-            var client = new Client()
-            {
-                Gender = "M"
-            };
-            return View(client);
+            //var client = new Client()
+            //{
+            //    Gender = "M"
+            //};
+           // return View(client);
         }
 
         // POST: Clients/Create
