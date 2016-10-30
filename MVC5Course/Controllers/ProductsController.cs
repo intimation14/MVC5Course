@@ -10,11 +10,12 @@ using MVC5Course.Models;
 
 namespace MVC5Course.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : BaseController
     {
-        private FabricsEntities db = new FabricsEntities();
+        //private FabricsEntities db = new FabricsEntities();
         ProductRepository repo = new ProductRepository();
 
+        
         // GET: Products
         public ActionResult Index()
         {
@@ -23,9 +24,10 @@ namespace MVC5Course.Controllers
             //使用Repository方式
             //var repo = new ProductRepository();
             //repo.UnitOfWork = new EFUnitOfWork();
-           
-            var data = repo.All().OrderByDescending(p => p.ProductId).Take(10).ToList();
 
+            //var data = repo.All().OrderByDescending(p => p.ProductId).Take(10).ToList();
+            // var data = repo.Get所有資料_依據productid排序().ToList();
+            var data = repo.Get所有資料_依據productid排序(10).ToList();
 
             return View(data);
         }
@@ -109,6 +111,8 @@ namespace MVC5Course.Controllers
             return View(product);
         }
 
+      
+
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -132,7 +136,10 @@ namespace MVC5Course.Controllers
         {
             //Product product = db.Product.Find(id);
             Product product = repo.Find(id);
-            db.Product.Remove(product);
+            //product.IsDeleted = true;
+            repo.Delete(product);
+            repo.UnitOfWork.Commit();
+            //db.Product.Remove(product);
             //db.SaveChanges();
             repo.UnitOfWork.Commit();
           
@@ -143,8 +150,8 @@ namespace MVC5Course.Controllers
         {
             if (disposing)
             {
-                //db.Dispose();
-                repo.UnitOfWork.Context.Dispose();
+                db.Dispose();
+               // repo.UnitOfWork.Context.Dispose();
             }
             base.Dispose(disposing);
         }

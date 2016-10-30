@@ -11,10 +11,11 @@ using MVC5Course.Models.ViewModels;
 
 namespace MVC5Course.Controllers
 {
-    public class ClientsController : Controller
+    public class ClientsController : BaseController
     {
-        private FabricsEntities db = new FabricsEntities();
+        //private FabricsEntities db = new FabricsEntities();
 
+        //[Route("Clients/list")]
         // GET: Clients
         public ActionResult Index(string search)
         {
@@ -111,12 +112,37 @@ namespace MVC5Course.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ClientId,FirstName,MiddleName,LastName,Gender,DateOfBirth,CreditRating,XCode,OccupationId,TelephoneNumber,Street1,Street2,City,ZipCode,Longitude,Latitude,Notes")] Client client)
         {
+            //不安全作法，若新增欄位忘記增加於bind(include)時，則不會進行更新
             if (ModelState.IsValid)
             {
                 db.Entry(client).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.OccupationId = new SelectList(db.Occupation, "OccupationId", "OccupationName", client.OccupationId);
+            return View(client);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id ,FormCollection form)
+        {
+
+            //較安全作業，驗證後儲存
+            var client = db.Client.Find(id);
+            //使用TryUpdateModel，不用再額外判斷 ModelState.IsValid的值
+            if (TryUpdateModel(client,null,null,new string[] { "IsAdmin"}))
+            {
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            //if (ModelState.IsValid)
+            //{
+            //    db.Entry(client).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
             ViewBag.OccupationId = new SelectList(db.Occupation, "OccupationId", "OccupationName", client.OccupationId);
             return View(client);
         }

@@ -11,7 +11,7 @@ namespace MVC5Course.Models.ViewModels
     {
         [Required]
         [StringLength(10, ErrorMessage = "{0} 最大不得超過10個字元")] //商業邏輯驗證
-        [DisplayName("名")]  //自定義顯示名稱
+        [DisplayName("姓")]  //自定義顯示名稱
         public string FirstName { get; set; }
         [Required]
         [StringLength(10, ErrorMessage = "{0} 最大不得超過{1}個字元")]

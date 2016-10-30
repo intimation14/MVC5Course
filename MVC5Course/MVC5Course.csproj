@@ -167,6 +167,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\LocalDebugOnlyAttribute.cs" />
+    <Compile Include="ActionFilters\ShareDataAttribute.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -174,10 +176,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ARController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\EFController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MVController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -275,6 +280,7 @@
     </Compile>
     <Compile Include="Models\ViewModels\ClientContributionViewModel.cs" />
     <Compile Include="Models\ViewModels\ClientLoginViewModel.cs" />
+    <Compile Include="Models\ViewModels\ProductBatchUpdateViewModel.cs" />
     <Compile Include="Models\vw_ClientContribution.cs">
       <DependentUpon>Fabrics.tt</DependentUpon>
     </Compile>
@@ -288,6 +294,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\222069473.jpg" />
+    <Content Include="Content\A.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -388,9 +396,16 @@
     <Content Include="Views\EF\ClientContribution.cshtml" />
     <Content Include="Views\EF\ClientContribution2.cshtml" />
     <Content Include="Views\EF\ClientContribution3.cshtml" />
+    <Content Include="Views\AR\Index.cshtml" />
+    <Content Include="Views\AR\PartialView.cshtml" />
+    <Content Include="Views\MV\Index.cshtml" />
+    <Content Include="Views\MV\MyForm.cshtml" />
+    <Content Include="Views\MV\MyFormResult.cshtml" />
+    <Content Include="Views\MV\ProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
